@@ -46,21 +46,21 @@ function App() {
           <div className="border-b-1 border-gray-800 pb-2 flex items-center justify-between">
             <div className='flex items-center'>
               <button
-              onClick={() => setCategoriesView(!categoriesView)}
-            >
-              {categoriesView ? <></> : <ArrowLeftToLine />}
-            </button>
-            <button
-              onClick={() => setShowModal(true)}
-              className="text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center m-2"
-            >
-              Nova Categoria
-            </button>
-            <button
-              onClick={() => setCategoryButtonState(categoryButtonState === 'delete' ? 'normal' : 'delete')}
-            >
-              <Trash color={categoryButtonState === 'delete' ? 'red' : 'green'} />
-            </button>
+                onClick={() => setCategoriesView(!categoriesView)}
+              >
+                {categoriesView ? <></> : <ArrowLeftToLine />}
+              </button>
+              <button
+                onClick={() => setShowModal(true)}
+                className="text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center m-2"
+              >
+                Nova Categoria
+              </button>
+              <button
+                onClick={() => setCategoryButtonState(categoryButtonState === 'delete' ? 'normal' : 'delete')}
+              >
+                <Trash color={categoryButtonState === 'delete' ? 'red' : 'green'} />
+              </button>
             </div>
             <ThemeToggle className='flex md:hidden' />
           </div>
@@ -129,12 +129,15 @@ function App() {
         </div>
       )}
       <div className='fixed bottom-10 right-10 max-h-100 bg-blue-700 text-white dark:bg-gray-800 rounded-2xl p-1'>
-        <div className='overflow-auto max-h-80'>
-          {messages.map((msg, index) => (
-            <ChatBubble key={index} msg={msg} />
-          ))}
-          {isLoading && <p className="loading">Gerando resposta...</p>}
-        </div>
+        {chatBotView ?
+          <div className='overflow-auto max-h-80'>
+            {messages.map((msg, index) => (
+              <ChatBubble key={index} msg={msg} />
+            ))}
+            {isLoading && <p className="loading">Gerando resposta...</p>}
+          </div>
+          : <></>
+        }
         <div className='p-3 flex content-center'>
           {chatBotView ?
             <input
