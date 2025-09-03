@@ -23,6 +23,8 @@ export const useChatbot = ({ categories, setCategories, setTodos, newCategoryNam
     setMessages((prev) => [...prev, { type: 'user', message: userInput }]);
     setIsLoading(true);
 
+    setUserInput('');
+
     try {
       const rawResponse = await generateResponse(userInput, selectTodoCategory);
       let response: GeminiResponse;
@@ -82,7 +84,6 @@ export const useChatbot = ({ categories, setCategories, setTodos, newCategoryNam
       setMessages((prev) => [...prev, { type: 'bot', message: 'Erro ao processar. Tente novamente.' }]);
     } finally {
       setIsLoading(false);
-      setUserInput('');
     }
   }, [userInput, selectTodoCategory, newCategoryName, categories, setCategories, setTodos]);
 

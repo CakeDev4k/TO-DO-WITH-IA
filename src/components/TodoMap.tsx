@@ -1,5 +1,5 @@
 import React from 'react';
-import { TodoText } from './TodoItem';
+import { TodoItem } from './TodoItem';
 import type { TodoList } from '../db';
 
 interface TodoListProps {
@@ -12,7 +12,7 @@ const TodoMap: React.FC<TodoListProps> = ({ todos, onToggle, onDeleteTodo }) => 
   return (
     <div className='flex flex-col p-4 overflow-auto h-[90vh]'>
       {todos.map((todo) => (
-        <TodoText
+        <TodoItem
           key={todo.id}
           todo={todo}
           onToggle={onToggle}

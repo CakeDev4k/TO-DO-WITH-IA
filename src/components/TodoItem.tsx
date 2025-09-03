@@ -8,7 +8,7 @@ type TodoCompType = {
   onDeleteTodo: (id: number) => void;
 };
 
-export function TodoText({ todo, onToggle, onDeleteTodo }: TodoCompType) {
+export function TodoItem({ todo, onToggle, onDeleteTodo }: TodoCompType) {
   const [hover, setHover] = useState(false);
   return (
     <div
@@ -21,7 +21,7 @@ export function TodoText({ todo, onToggle, onDeleteTodo }: TodoCompType) {
           type="checkbox"
           checked={todo.state === 'complete'}
           onChange={() => onToggle(todo.id)}
-          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+          className="w-4 h-4 text-blue-600 bg-gray-400 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
         />
         <label
           htmlFor="default-checkbox"
