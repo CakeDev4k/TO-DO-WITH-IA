@@ -1,8 +1,17 @@
 import { useState, useEffect, useCallback } from 'react';
 import { db, type TodoList } from '../db';
 
-export function useTodos() {
+export function useTodos({ selectedCategories }: { selectedCategories?: string[] }) {
   const [todos, setTodos] = useState<TodoList[]>([]);
+
+  let filteredTodos: TodoList[] = [];
+
+  // Filtragem
+  if (selectedCategories && selectedCategories.length) {
+    filteredTodos = todos.filter((todo) => selectedCategories.includes(todo.category));
+  } else {
+    filteredTodos = todos;
+  }
 
   // Carrega todos do banco ao iniciar
   useEffect(() => {
@@ -54,6 +63,7 @@ export function useTodos() {
 
   return {
     todos,
+    filteredTodos,
     addTodo,
     deleteTodo,
     toggleTodoState,

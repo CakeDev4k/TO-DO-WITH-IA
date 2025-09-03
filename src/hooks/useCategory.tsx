@@ -3,6 +3,8 @@ import { db, type Category } from '../db';
 
 export function useCategory() {
     const [categories, setCategories] = useState<Category[]>([]);
+    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+    const [selectTodoCategory, setSelectTodoCategory] = useState('');
 
     // Carrega categorias do banco ao iniciar
     useEffect(() => {
@@ -40,12 +42,29 @@ export function useCategory() {
         await db.AppConfig.add({ selectedCategories: categories });
     };
 
+    // Seleção de categorias
+    const handleToggleCategory = async (name: string) => {
+        setSelectTodoCategory(name);
+        setSelectedCategories((prev) => {
+            const updated = prev.includes(name)
+                ? prev.filter((cat) => cat !== name)
+                : [...prev, name];
+            saveSelectedCategories(updated);
+            return updated;
+        });
+    };
+
     return {
         categories,
+        selectTodoCategory,
+        selectedCategories,
+        setSelectedCategories,
+        setSelectTodoCategory,
         addCategory,
         deleteCategory,
         refreshCategories,
         setCategories,
-        saveSelectedCategories
+        saveSelectedCategories,
+        handleToggleCategory
     };
 }
