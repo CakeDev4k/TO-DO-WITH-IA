@@ -128,9 +128,9 @@ function App() {
           />
         </div>
       )}
-      <div className='fixed bottom-10 right-10 max-h-100 bg-blue-700 text-white dark:bg-gray-800 rounded-2xl p-1'>
+      <div className='fixed md:bottom-10 md:right-10 bottom-0 w-screen md:w-auto max-h-100 bg-blue-700 text-white dark:bg-gray-800 md:rounded-2xl p-1 flex flex-col items-center'>
         {chatBotView ?
-          <div className='overflow-auto max-h-80'>
+          <div className='overflow-auto max-h-80 w-100 p-3'>
             {messages.map((msg, index) => (
               <ChatBubble key={index} msg={msg} />
             ))}
